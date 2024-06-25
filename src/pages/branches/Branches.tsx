@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { getResourceList } from "../../api/api";
-import { Product } from '../../api/types';
+import { Branch } from '../../api/types';
 import { SimpleGrid } from "@chakra-ui/react";
-import ProductItem from './ProductItem';
+import BranchItem from "./BranchItem";
 
 
-const Products = () => {
+const Branches = () => {
 
     const getAuthHeader = useAuthHeader();
 
@@ -14,12 +14,12 @@ const Products = () => {
     data: response,
     isSuccess
   } = useQuery({
-    queryKey: ["Products"],
-    queryFn: () => getResourceList<Product>("product", getAuthHeader),
+    queryKey: ["Branches"],
+    queryFn: () => getResourceList<Branch>("branch", getAuthHeader),
     select: (r) => r.data
   });
   
-  const products = response?.items;
+  const branches = response?.items;
 
   return (
     <SimpleGrid
@@ -30,12 +30,11 @@ const Products = () => {
       m={2}
     >
       {isSuccess &&
-        products?.map((product) => (
-          <ProductItem key={product.id} product={product}  />
-          
+        branches?.map((branch) => (
+          <BranchItem key={branch.id} branch={branch} />
         ))}
     </SimpleGrid>
   );
 }
 
-export default Products
+export default Branches;

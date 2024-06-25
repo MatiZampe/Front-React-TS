@@ -18,8 +18,8 @@ import { useNavigate } from "react-router-dom";
       <>
         {user && (
           <HStack color={"white"}>
-            <Text fontSize={"1rem"}>{user.FirstName}+ " " +{user.LastName}</Text>
-            <Text fontSize={"1rem"}>{UserTypeEnum[user.userType]}</Text>
+            {/* <Text fontSize={"1rem"}>{user.fullName}</Text>
+            <Text fontSize={"1rem"}>{UserTypeEnum[user.userType]}</Text> */}
             <Center height="2rem">
               <Divider
                 orientation="vertical"
