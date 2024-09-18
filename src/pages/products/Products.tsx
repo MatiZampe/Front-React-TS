@@ -2,8 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { getResourceList } from "../../api/api";
 import { Product } from '../../api/types';
-import { SimpleGrid } from "@chakra-ui/react";
-import ProductItem from './ProductItem';
+import { Box, Center, Text, VStack } from "@chakra-ui/react";
 
 
 const Products = () => {
@@ -18,24 +17,21 @@ const Products = () => {
     queryFn: () => getResourceList<Product>("product", getAuthHeader),
     select: (r) => r.data
   });
-  
-  const products = response?.items;
 
   return (
-    <SimpleGrid
-      columns={1}
-      spacing={2}
-      justifyContent={"center"}
-      alignItems={"center"}
-      m={2}
-    >
-      {isSuccess &&
-        products?.map((product) => (
-          <ProductItem key={product.id} product={product}  />
-          
-        ))}
-    </SimpleGrid>
-  );
+   < Box width={"100%"} alignItems={"center"} justifyContent={"center"} height={"100%"}>
+        {isSuccess && response.items.map((product) => (
+            <VStack key={product.id} width={"90%"} backgroundColor={"white"} justifySelf={"center"} height={"90%"}>
+            <Text fontSize={"5rem"} color={"red"}>
+                {product.Name}
+            </Text>
+            <Text fontSize={"5rem"}>
+                {product.Description}
+            </Text>
+            </VStack>
+        ) )}
+   </Box>
+  )
 }
 
 export default Products

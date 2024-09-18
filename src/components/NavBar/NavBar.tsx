@@ -1,53 +1,27 @@
-import { Box, HStack, Hide } from "@chakra-ui/react";
+import { Box, HStack, Hide, Icon, Show } from "@chakra-ui/react";
 import NavbarUser from "./NavBarUser";
 import NavbarItem from "./NavBarItem";
-import useAuthUser from "react-auth-kit/hooks/useAuthUser";
-import { ApplicationUser, UserTypeEnum } from '../../api/types';
-import backgroundImage from '../../assets/images/bg-image.jpg'
-
 
 
 const Navbar = () => {
-
-  const user = useAuthUser<ApplicationUser>();
-
-  const adminRoutes = [
-    {
-      label: "Products",
-      path: "/adminProducts",
-    },
+  
+  const routes = [
     {
       label: "Branches",
-      path: "/adminBranches",
+      path: "/branch",
     },
     {
-      label: "Category",
-      path: "/adminCategory"
+      label: "Products",
+      path: "/product",
     },
     {
-      label: "Menu",
-      path: "/adminMenu"
+      label: "Menus",
+      path: "/menu",
     }
   ];
 
-  const routes = [
-
-    ...(user && user.userType === UserTypeEnum.Admin ?
-      [
-        {
-          label: "Admin",
-          isAdmin: true,
-          adminRoutes: adminRoutes
-        }
-      ]
-      : [])
-  ];
-
   return (
-    <Box w={"full"} h={"10vh"}
-      backgroundImage={`url(${backgroundImage})`}
-      backgroundSize="cover" mb={0}
-      backgroundPosition="center">
+    <Box w={"full"} h={"16vh"} bg={"black"} mb={0}>
       <HStack
         w={"full"}
         h={"full"}
@@ -68,8 +42,6 @@ const Navbar = () => {
                 label={route.label}
                 to={route.path}
                 path={route.path}
-                isAdmin={route.isAdmin}
-                adminRoutes={route.adminRoutes}
               />
             ))}
           </HStack>

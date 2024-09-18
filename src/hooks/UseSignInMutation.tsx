@@ -14,7 +14,7 @@ export const useSignInMutation = (email: string, password: string) => {
   return useMutation({
     mutationKey: ["Login"],
     mutationFn: () =>
-      client.post<AuthResponse>("/users/Login", {
+      client.post<AuthResponse>("/user/Login", {
         email,
         password,
       }),
@@ -37,7 +37,7 @@ export const useSignInMutation = (email: string, password: string) => {
       console.log(err);
       toast({
         status: "error",
-        description: "Error de credenciales",
+        description: "asdasd",
         title: err.response?.data?.error?.description || "Ocurrió un error",
       });
     },
