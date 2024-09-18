@@ -3,6 +3,40 @@ export interface KeyValuePair {
     [key: string]: any;
 }
 
+export interface FilterItem {
+    field: string;
+    value: any;
+  }
+  
+  export interface ApiRange {
+    start: number;
+    end: number;
+  }
+  
+  export interface Sort {
+    field: string;
+    isAscending: boolean;
+  }
+  
+  export enum AlternativeOperators {
+    StringContains = 1,
+    DateTime,
+  }
+  
+  export type PatchOperation =
+    | "add"
+    | "remove"
+    | "replace"
+    | "copy"
+    | "move"
+    | "test";
+  
+  export interface PatchObject {
+    path: string;
+    op: PatchOperation;
+    value: any;
+  }
+
 export interface AuthResponse {
     authToken: {
         token: string;
@@ -23,11 +57,11 @@ export enum UserTypeEnum {
 
 export interface ApplicationUser {
     id: string,
-    FirstName: string,
-    LastName: string,
-    FullName: string,
+    firstName: string,
+    lastName: string,
+    fullName: string,
     userType: UserTypeEnum,
-    Active: boolean;
+    active: boolean;
 }   
 
 export interface ApiListResponse<T> {
@@ -38,38 +72,44 @@ export interface ApiListResponse<T> {
 
 export interface Branch {
     id: string,
-    Name: string,
-    Description: string,
-    StreetNumber: number,
-    Street: string,
-    CityId: string,
-    MenuId: string,
-    City: City,
-    Menu: Menu;
+    name: string,
+    description: string,
+    streetNumber: number,
+    street: string,
+    cityId: string,
+    menuId: string,
+    city: City,
+    menu: Menu;
 }   
 
 export interface Category {
     id: string,
-    Name: string,
-    Description: string,
-    ShowCategory: boolean,
-    Products: Product[];
+    name: string,
+    description: string,
+    showCategory: boolean,
+    products: Product[],
+    menuId: string,
+    menu: Menu,
+    subCategories: Category[],
+    parentCategoryId: string,
+    parentCategory: Category;
 }   
 
 export interface City {
     id: string,
-    Name: string,
-    ZipCode: string,
-    StateId: string,
-    State: State,
-    Branches: Branch[];
+    name: string,
+    zipCode: string,
+    stateId: string,
+    state: State,
+    branches: Branch[];
 }   
 
 export interface Menu {
     id: string,
-    Name: string,
-    BranchId: string,
-    Branch: Branch;
+    name: string,
+    branchId: string,
+    branch: Branch,
+    categories: Category[];
 }
 
 export enum StatusEnum {
@@ -79,21 +119,22 @@ export enum StatusEnum {
 
 export interface Product {
     id: string,
-    Name: string,
-    Description: string,
-    ShowProduct: boolean,
-    Status: StatusEnum,
-    Order: number,
-    CashPrice: number,
-    CardPrice: number,
-    Subtitle: string,
-    Code: string,
-    CategoryId: string,
-    Category: Category;
+    name: string,
+    description: string,
+    showProduct: boolean,
+    status: StatusEnum,
+    order: number,
+    cashPrice: number,
+    cardPrice: number,
+    subtitle: string,
+    code: string,
+    categoryId: string,
+    category: Category;
+    productImage: string;
 }
 
 export interface State {
     id: string,
-    Name: string,
-    Citiies: City[];
+    name: string,
+    cities: City[];
 }
