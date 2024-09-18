@@ -11,6 +11,7 @@ interface Props {
 
 //Squash example 1
 
+//squash example 2
 const FileInput = ({ value, setter, label }: Props) => {
     const ref = useRef<HTMLInputElement>(null);
     

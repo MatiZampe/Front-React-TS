@@ -34,6 +34,25 @@ const App = () => {
           <Route path={signInPath} element={<SignIn />} />
           <Route path="/" element={<Home />} />
           <Route path="/branch/menu/:id" element={<Menu />} />
+<<<<<<< HEAD
+=======
+          {/* <Route
+            path="/product"
+            element={
+              <RequireAuth fallbackPath={signInPath}>
+                <Products />
+              </RequireAuth>
+            }
+          /> */}
+          {/* <Route
+            path="/branch"
+            element={
+              <RequireAuth fallbackPath={signInPath}>
+                <Branches />
+              </RequireAuth>
+            }
+          /> */}
+>>>>>>> a4e4ffca650648b7b345b08da9238c36f5fbc9ac
           <Route path="/branch/menu/product/:id" element={<ProductDetailedView />} />
           {user && user.userType === UserTypeEnum.Admin &&
             <>
